@@ -1,5 +1,6 @@
 package com.api.sms.model;
 
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -18,6 +19,7 @@ public class Note {
 
     @ManyToOne
     @JoinColumn(name = "etudiant_id")
+    @JsonBackReference
     private Etudiant etudiant;
 
     public Note() {
