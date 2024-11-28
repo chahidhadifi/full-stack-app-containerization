@@ -7,6 +7,8 @@ import lombok.*;
 @Getter
 @Setter
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 public class Note {
 
     @Id
@@ -21,14 +23,5 @@ public class Note {
     @JoinColumn(name = "etudiant_id")
     @JsonBackReference
     private Etudiant etudiant;
-
-    public Note() {
-    }
-
-    public Note(String nomDuCours, Double valeurDeNote, Etudiant etudiant) {
-        this.nomDuCours = nomDuCours;
-        this.valeurDeNote = valeurDeNote;
-        this.etudiant = etudiant;
-    }
 
 }

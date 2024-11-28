@@ -9,6 +9,8 @@ import lombok.*;
 @Getter
 @Setter
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 public class Etudiant {
 
     @Id
@@ -24,14 +26,5 @@ public class Etudiant {
     @OneToMany(mappedBy = "etudiant")
     @JsonManagedReference
     private List<Note> notes;
-
-    public Etudiant() {
-        this.dateDeCreation = LocalDateTime.now();
-    }
-
-    public Etudiant(String nom) {
-        this.nom = nom;
-        this.dateDeCreation = LocalDateTime.now();
-    }
 
 }

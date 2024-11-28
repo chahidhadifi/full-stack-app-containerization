@@ -23,4 +23,5 @@ public class EtudiantService {
     public Etudiant getEtudiantById(Long id) {
         return etudiantRepository.findById(id).orElse(null);
     }
+
 }

@@ -19,4 +19,5 @@ public class NoteService {
     public List<Note> getNotesByEtudiantId(Long etudiantId) {
         return noteRepository.findByEtudiantId(etudiantId);
     }
+
 }
