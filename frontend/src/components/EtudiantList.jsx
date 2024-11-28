@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { fetchEtudiants } from "../services/etudiantService";
+import { fetchEtudiants, deleteEtudiant } from "../services/etudiantService";
 
 const EtudiantList = () => {
   const [etudiants, setEtudiants] = useState([]);
@@ -13,6 +13,12 @@ const EtudiantList = () => {
     if (!notes || notes.length === 0) return 0;
     const total = notes.reduce((sum, note) => sum + note.valeurDeNote, 0);
     return total / notes.length;
+  };
+
+  const handleDeleteEtudiant = (id) => {
+    deleteEtudiant(id).then(() => {
+      setEtudiants((prev) => prev.filter((etudiant) => etudiant.id !== id));
+    });
   };
 
   return (
@@ -40,6 +46,11 @@ const EtudiantList = () => {
                   <Link to={`/etudiants/${etudiant.id}`}>{etudiant.nom}</Link>
                 </td>
                 <td>{etudiant.dateDeCreation}</td>
+                <td>
+                  <button onClick={() => handleDeleteEtudiant(etudiant.id)}>
+                    Supprimer
+                  </button>
+                </td>
               </tr>
             );
           })}

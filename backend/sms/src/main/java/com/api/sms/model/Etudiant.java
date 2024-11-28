@@ -23,7 +23,7 @@ public class Etudiant {
     @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
     private LocalDateTime dateDeCreation;
 
-    @OneToMany(mappedBy = "etudiant")
+    @OneToMany(mappedBy = "etudiant", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private List<Note> notes;
 

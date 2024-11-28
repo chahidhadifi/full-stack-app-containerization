@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { fetchEtudiantById } from "../services/etudiantService";
-import { fetchNotesByEtudiantId } from "../services/noteService";
+import { fetchNotesByEtudiantId, deleteNote } from "../services/noteService";
 
 const EtudiantDetails = () => {
   const { id } = useParams();
@@ -12,6 +12,14 @@ const EtudiantDetails = () => {
     fetchEtudiantById(id).then((response) => setEtudiant(response.data));
     fetchNotesByEtudiantId(id).then((response) => setNotes(response.data));
   }, [id]);
+
+  const handleDeleteNote = (id) => {
+    if (window.confirm("Voulez-vous vraiment supprimer cette note ?")) {
+      deleteNote(id).then(() => {
+        setNotes((prev) => prev.filter((note) => note.id !== id));
+      });
+    }
+  };
 
   return (
     <div>
@@ -38,6 +46,11 @@ const EtudiantDetails = () => {
                 >
                   <td>{note.nomDuCours}</td>
                   <td>{note.valeurDeNote}</td>
+                  <td>
+                    <button onClick={() => handleDeleteNote(note.id)}>
+                      Supprimer
+                    </button>
+                  </td>
                 </tr>
               ))}
             </tbody>

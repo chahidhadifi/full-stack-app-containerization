@@ -20,4 +20,8 @@ public class NoteService {
         return noteRepository.findByEtudiantId(etudiantId);
     }
 
+    public void deleteNote(Long id) {
+        noteRepository.deleteById(id);
+    }
+
 }
