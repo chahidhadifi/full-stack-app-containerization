@@ -29,7 +29,9 @@ const AjouterEtudiant = () => {
           required
         />
       </div>
-      <button type="submit">Ajouter</button>
+      <button type="submit" style={{ marginTop: "20px" }}>
+        Ajouter
+      </button>
     </form>
   );
 };

@@ -25,16 +25,17 @@ const EtudiantList = () => {
     <div>
       <h1>Liste des étudiants</h1>
       <Link to="/ajouter-etudiant">Ajouter un étudiant</Link>
-      <table border="1">
+      <table border="1" style={{ marginTop: "20px" }}>
         <thead>
           <tr>
             <th>Nom</th>
             <th>Date de création</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
           {etudiants.map((etudiant) => {
-            const moyenne = calculateAverage(etudiant.notes); // Calcul de la moyenne
+            const moyenne = calculateAverage(etudiant.notes);
             return (
               <tr
                 key={etudiant.id}
@@ -47,9 +48,9 @@ const EtudiantList = () => {
                 </td>
                 <td>{etudiant.dateDeCreation}</td>
                 <td>
-                  <button onClick={() => handleDeleteEtudiant(etudiant.id)}>
+                  <Link onClick={() => handleDeleteEtudiant(etudiant.id)}>
                     Supprimer
-                  </button>
+                  </Link>
                 </td>
               </tr>
             );

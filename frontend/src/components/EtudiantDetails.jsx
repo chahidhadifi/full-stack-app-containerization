@@ -25,14 +25,15 @@ const EtudiantDetails = () => {
     <div>
       {etudiant && (
         <div>
-          <h1>Détails de {etudiant.nom}</h1>
+          <h1>Détails de l'étudiant {etudiant.nom}</h1>
           <Link to={"/"}>Retour</Link>
           <h2>Notes</h2>
-          <table border="1">
+          <table border="1" style={{ marginBottom: "20px" }}>
             <thead>
               <tr>
                 <th>Nom du cours</th>
                 <th>Valeur</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
@@ -47,9 +48,9 @@ const EtudiantDetails = () => {
                   <td>{note.nomDuCours}</td>
                   <td>{note.valeurDeNote}</td>
                   <td>
-                    <button onClick={() => handleDeleteNote(note.id)}>
+                    <Link onClick={() => handleDeleteNote(note.id)}>
                       Supprimer
-                    </button>
+                    </Link>
                   </td>
                 </tr>
               ))}
