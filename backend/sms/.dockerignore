@@ -1,0 +1,35 @@
+# Exclure les répertoires et fichiers générés
+target/
+out/
+build/
+
+# Exclure les fichiers de configuration spécifiques à l'IDE
+*.iml
+.idea/
+.vscode/
+.project
+.classpath
+.settings/
+
+# Exclure les fichiers de log
+*.log
+
+# Exclure les fichiers sensibles ou spécifiques au système local
+*.env
+*.properties
+*.yml
+*.yaml
+.DS_Store
+
+# Exclure les fichiers Maven inutiles
+.mvn/wrapper/maven-wrapper.jar
+
+# Exclure les fichiers Git
+.git/
+.gitignore
+
+# Exclure les fichiers de cache ou temporaires
+*.swp
+*.tmp
+*.bak
+*.~*
