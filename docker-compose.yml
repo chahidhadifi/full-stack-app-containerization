@@ -1,0 +1,42 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres
+    container_name: postgres-container
+    env_file:
+      - ./backend/sms/.env.list
+    networks:
+      - my-network
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  backend:
+    image: chahidhadifi/my-backend-image:latest
+    container_name: backend-container
+    networks:
+      - my-network
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+
+  frontend:
+    image: chahidhadifi/my-frontend-image:latest
+    container_name: frontend-container
+    networks:
+      - my-network
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+
+networks:
+  my-network:
+    driver: bridge
+
+volumes:
+  pgdata:
+    driver: local
