@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simple-node-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: simple-node-app
+  template:
+    metadata:
+      labels:
+        app: simple-node-app
+    spec:
+      containers:
+      - name: simple-node-app
+        image: chahidhadifi/simple-node-app
+        ports:
+        - containerPort: 3000
+        env:
+        - name: DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: myapp.acid-minimal-cluster.credentials.postgresql.acid.zalan.do
+              key: username
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: myapp.acid-minimal-cluster.credentials.postgresql.acid.zalan.do
+              key: password
+        - name: DB_HOST
+          value: acid-minimal-cluster
+        - name: DB_NAME
+          value: myappdb
+        - name: DB_PORT
+          value: "5432"
