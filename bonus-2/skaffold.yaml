@@ -1,0 +1,25 @@
+apiVersion: skaffold/v2beta26
+kind: Config
+metadata:
+  name: my-app
+build:
+  artifacts:
+    - image: chahidhadifi/my-backend-image
+      context: ../backend/sms
+      docker:
+        dockerfile: Dockerfile
+    - image: chahidhadifi/my-frontend-image
+      context: ../frontend
+      docker:
+        dockerfile: Dockerfile
+  local:
+    push: false
+deploy:
+  kubectl:
+    manifests:
+      - kubernetes/postgres-pv.yaml
+      - kubernetes/postgres-pvc.yaml
+      - kubernetes/postgres-configmap.yaml
+      - kubernetes/postgres-deployment.yaml
+      - kubernetes/backend-deployment.yaml
+      - kubernetes/frontend-deployment.yaml

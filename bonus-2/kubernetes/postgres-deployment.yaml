@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-container
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres-container
+  template:
+    metadata:
+      labels:
+        app: postgres-container
+    spec:
+      containers:
+        - name: postgres
+          image: postgres
+          envFrom:
+            - configMapRef:
+                name: postgres-config
+          ports:
+            - containerPort: 5432
+          volumeMounts:
+            - name: pgdata
+              mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: pgdata
+          persistentVolumeClaim:
+            claimName: pgdata
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-container
+spec:
+  ports:
+    - port: 5432
+  selector:
+    app: postgres-container
