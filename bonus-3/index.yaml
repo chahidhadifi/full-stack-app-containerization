@@ -1,0 +1,13 @@
+apiVersion: v1
+entries:
+  my-app:
+  - apiVersion: v2
+    appVersion: "1.0"
+    created: "2024-12-28T14:14:03.504547203+01:00"
+    description: A Helm chart for my full-stack application
+    digest: e6841eeb4bc7defbb1b4ac934e136a0b9fe6927c8c4505e051bd77f98fb8a9b1
+    name: my-app
+    urls:
+    - my-app-0.1.0.tgz
+    version: 0.1.0
+generated: "2024-12-28T14:14:03.502529403+01:00"

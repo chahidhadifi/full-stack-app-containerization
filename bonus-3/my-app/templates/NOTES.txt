@@ -1,0 +1,9 @@
+🎉 Thank you for installing {{ .Chart.Name }}!
+
+To get access to your application:
+
+🔧 Backend service is available at: backend-container:{{ .Values.backend.service.port }}
+🌐 Frontend service is available on node port: {{ .Values.frontend.service.nodePort }}
+🗄️ Database is running on: postgres-container:5432
+
+📧 For support, please contact the developer at: chahidhadifi@gmail.com

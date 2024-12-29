@@ -1,0 +1,30 @@
+postgres:
+  image: postgres
+  env:
+    POSTGRES_DB: sms_db
+    POSTGRES_USER: postgres
+    POSTGRES_PASSWORD: chahidhadifi
+  persistence:
+    enabled: true
+    size: 1Gi
+
+backend:
+  image: chahidhadifi/my-backend-image:latest
+  env:
+    SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-container:5432/sms_db
+    SPRING_DATASOURCE_USERNAME: postgres
+    SPRING_DATASOURCE_PASSWORD: chahidhadifi
+  service:
+    type: ClusterIP
+    port: 8080
+
+frontend:
+  image: chahidhadifi/my-frontend-image:latest
+  service:
+    type: NodePort
+    nodePort: 30001
+    port: 5173
+
+serviceAccount:
+  create: true
+  name: my-app-sa
